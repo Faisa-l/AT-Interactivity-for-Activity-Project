@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Physical Activity Tracker"
+run/main_scene="uid://cc2u0bi24a4bc"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
