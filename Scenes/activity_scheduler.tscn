@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://darovhn36ipjb"]
+
+[ext_resource type="Script" uid="uid://ckii3np1or57h" path="res://Scripts/activity_scheduler.gd" id="1_i0umu"]
+
+[node name="ActivityScheduler" type="Node"]
+script = ExtResource("1_i0umu")
