@@ -6,4 +6,6 @@ var activity : String
 
 # What time this activity takes place at
 var starts : Dictionary[String, int]
-var ends : Dictionary[String, int]
+
+# Duration of the activity in whole minutes
+var duration : int
