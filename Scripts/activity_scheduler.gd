@@ -25,8 +25,7 @@ func schedule_activity(activity_name : String, starts : Dictionary, duration : i
 	schedule.push_back(new_activity)
 	print(new_activity.starts)
 
-func _process(delta: float) -> void:
-	
+func _on_timer_timeout() -> void:
 	var now : int = Time.get_unix_time_from_system()
 	for event in schedule:
 		# Should an activity be running now?
@@ -35,6 +34,7 @@ func _process(delta: float) -> void:
 		if (start <= now and now <= end):
 			if !current_event: 
 				current_event = event
+			print("ongoing event")
 			break
 		else:
 			current_event = null
