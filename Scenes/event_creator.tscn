@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cnn2y8cbyyc2u"]
+
+[node name="VContainer" type="VBoxContainer"]
+offset_right = 140.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+
+[node name="Headers" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HourLabel" type="Label" parent="Headers"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hour"
+
+[node name="MinuteLabel" type="Label" parent="Headers"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Minute"
+
+[node name="ActivityLabel" type="Label" parent="Headers"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Activity"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HourEdit" type="LineEdit" parent="HBoxContainer"]
+layout_mode = 2
+placeholder_text = "0"
+
+[node name="MinuteEdit" type="LineEdit" parent="HBoxContainer"]
+layout_mode = 2
+placeholder_text = "0"
+
+[node name="ActivityEdit" type="LineEdit" parent="HBoxContainer"]
+layout_mode = 2
+placeholder_text = "Activity"
+expand_to_text_length = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "Add event"
