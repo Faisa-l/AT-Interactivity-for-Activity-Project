@@ -5,7 +5,7 @@ class_name ScheduledActivity
 var activity : String
 
 # What time this activity takes place at
-var starts : Dictionary[String, int]
+var starts : Dictionary
 
 # Duration of the activity in whole minutes
 var duration : int

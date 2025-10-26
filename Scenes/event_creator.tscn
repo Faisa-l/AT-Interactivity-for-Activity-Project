@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://24g8myqs06hp" path="res://Scripts/input_text_validation.gd" id="1_31knt"]
 [ext_resource type="Script" uid="uid://jmmq4h6whmf3" path="res://Scenes/event_creator.gd" id="1_wwcuh"]
 
-[node name="VContainer" type="VBoxContainer"]
+[node name="EventCreator" type="VBoxContainer"]
 offset_right = 140.0
 offset_bottom = 40.0
 size_flags_horizontal = 4
@@ -57,3 +57,4 @@ layout_mode = 2
 text = "Add event"
 
 [connection signal="text_changed" from="HBoxContainer/Activity/ActivityEdit" to="HBoxContainer/Activity/ActivityEdit" method="_on_text_changed"]
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
