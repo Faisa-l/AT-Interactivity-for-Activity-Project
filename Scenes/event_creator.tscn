@@ -1,45 +1,57 @@
-[gd_scene format=3 uid="uid://cnn2y8cbyyc2u"]
+[gd_scene load_steps=2 format=3 uid="uid://cnn2y8cbyyc2u"]
+
+[ext_resource type="Script" uid="uid://24g8myqs06hp" path="res://Scripts/input_text_validation.gd" id="1_31knt"]
 
 [node name="VContainer" type="VBoxContainer"]
 offset_right = 140.0
 offset_bottom = 40.0
 size_flags_horizontal = 4
 
-[node name="Headers" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
-size_flags_vertical = 3
 
-[node name="HourLabel" type="Label" parent="Headers"]
+[node name="Hours" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="HourLabel" type="Label" parent="HBoxContainer/Hours"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Hour"
 
-[node name="MinuteLabel" type="Label" parent="Headers"]
+[node name="HourEdit" type="SpinBox" parent="HBoxContainer/Hours"]
+layout_mode = 2
+max_value = 24.0
+rounded = true
+
+[node name="Minutes" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="MinuteLabel" type="Label" parent="HBoxContainer/Minutes"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Minute"
 
-[node name="ActivityLabel" type="Label" parent="Headers"]
+[node name="MinuteEdit" type="SpinBox" parent="HBoxContainer/Minutes"]
+layout_mode = 2
+max_value = 60.0
+rounded = true
+
+[node name="Activity" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="ActivityLabel" type="Label" parent="HBoxContainer/Activity"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Activity"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="ActivityEdit" type="LineEdit" parent="HBoxContainer/Activity"]
 layout_mode = 2
-
-[node name="HourEdit" type="LineEdit" parent="HBoxContainer"]
-layout_mode = 2
-placeholder_text = "0"
-
-[node name="MinuteEdit" type="LineEdit" parent="HBoxContainer"]
-layout_mode = 2
-placeholder_text = "0"
-
-[node name="ActivityEdit" type="LineEdit" parent="HBoxContainer"]
-layout_mode = 2
-placeholder_text = "Activity"
+max_length = 12
 expand_to_text_length = true
+script = ExtResource("1_31knt")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
 text = "Add event"
+
+[connection signal="text_changed" from="HBoxContainer/Activity/ActivityEdit" to="HBoxContainer/Activity/ActivityEdit" method="_on_text_changed"]

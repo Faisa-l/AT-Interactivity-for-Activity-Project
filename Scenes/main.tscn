@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cc2u0bi24a4bc"]
+[gd_scene load_steps=3 format=3 uid="uid://cc2u0bi24a4bc"]
 
 [ext_resource type="PackedScene" uid="uid://darovhn36ipjb" path="res://Scenes/activity_scheduler.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://cnn2y8cbyyc2u" path="res://Scenes/event_creator.tscn" id="2_bo1nx"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -23,3 +24,10 @@ color = Color(0.09019608, 0.09019608, 0.09019608, 1)
 [node name="ActivityTracking" type="Node" parent="."]
 
 [node name="ActivityScheduler" parent="ActivityTracking" instance=ExtResource("1_jjgbg")]
+
+[node name="VContainer" parent="." instance=ExtResource("2_bo1nx")]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 1026.0
+offset_right = 462.0
+offset_bottom = 1119.0
