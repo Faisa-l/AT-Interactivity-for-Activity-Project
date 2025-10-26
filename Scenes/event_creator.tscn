@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnn2y8cbyyc2u"]
+[gd_scene load_steps=3 format=3 uid="uid://cnn2y8cbyyc2u"]
 
 [ext_resource type="Script" uid="uid://24g8myqs06hp" path="res://Scripts/input_text_validation.gd" id="1_31knt"]
+[ext_resource type="Script" uid="uid://jmmq4h6whmf3" path="res://Scenes/event_creator.gd" id="1_wwcuh"]
 
 [node name="VContainer" type="VBoxContainer"]
 offset_right = 140.0
 offset_bottom = 40.0
 size_flags_horizontal = 4
+script = ExtResource("1_wwcuh")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
