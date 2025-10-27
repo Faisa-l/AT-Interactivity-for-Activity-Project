@@ -9,7 +9,7 @@ var schedule : Array[ScheduledActivity]
 var current_event : ScheduledActivity
 
 # Schedules an activity_name to perform at
-func schedule_activity(activity_name : String, starts : Dictionary, duration : int):
+func schedule_activity(activity_name : String, starts : Dictionary, duration : int) -> ScheduledActivity:
 	# Make sure activity is not overlapping an existing one
 	var bstart : int = Time.get_unix_time_from_datetime_dict(starts)
 	var bend : int = bstart + (duration*60)
@@ -18,7 +18,7 @@ func schedule_activity(activity_name : String, starts : Dictionary, duration : i
 		var aend : int = astart + (event.duration*60)
 		if (astart <= bend and bstart <= aend): 
 			print("Scheduled activity will overlap another.")
-			return
+			return null
 	
 	var new_activity : ScheduledActivity = ScheduledActivity.new()
 	new_activity.activity = activity_name
@@ -26,6 +26,7 @@ func schedule_activity(activity_name : String, starts : Dictionary, duration : i
 	new_activity.duration = duration
 	schedule.push_back(new_activity)
 	print(new_activity.starts)
+	return new_activity
 
 # Timer duration will be when this checks for activities
 func _on_timer_timeout() -> void:
@@ -43,5 +44,6 @@ func _on_timer_timeout() -> void:
 		
 		# No event is running
 		else:
-			event_ended.emit(current_event.activity)
+			if current_event:
+				event_ended.emit(current_event.activity)
 			current_event = null

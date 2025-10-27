@@ -14,4 +14,4 @@ var activity_value_label : Label = $MarginContainer/HBoxContainer/Tracking/Value
 
 func initialise(scheduled_activity : ScheduledActivity) -> void:
 	activity_label.text = scheduled_activity.activity
-	time_label.text = Time.get_datetime_string_from_datetime_dict(scheduled_activity.starts, false)
+	time_label.text = Time.get_datetime_string_from_datetime_dict(scheduled_activity.starts, true)

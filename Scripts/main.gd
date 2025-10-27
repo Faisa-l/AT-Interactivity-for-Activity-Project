@@ -9,6 +9,12 @@ var activity_scheduler : ActivityScheduler = $ActivityTracking/ActivityScheduler
 @onready
 var walking_tracker : WalkingTracker = $ActivityTracking/WalkingTracker
 
+@onready
+var notification_list : VBoxContainer = $ActivityNotifications
+
+@onready
+var notification_scene : PackedScene = load("res://Scenes/displayed_activity_notification.tscn")
+
 func _ready() -> void:
 	event_creator.event_submitted.connect(on_event_submitted)
 	activity_scheduler.event_started.connect(process_event_started)
@@ -20,7 +26,11 @@ func on_event_submitted(hours: int, minutes: int, activity : String) -> void:
 	time["hour"] = hours
 	time["minute"] = minutes
 	
-	activity_scheduler.schedule_activity(activity, time, 30)
+	var success = activity_scheduler.schedule_activity(activity, time, 30)
+	if success:
+		var card : DisplayedActivityNotification = notification_scene.instantiate()
+		notification_list.add_child(card)
+		card.initialise(success)
 
 # When a scheduled event starts, start the corresponding tracker
 func process_event_started(activity: String) -> void:
