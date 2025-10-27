@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cc2u0bi24a4bc"]
+[gd_scene load_steps=5 format=3 uid="uid://cc2u0bi24a4bc"]
 
 [ext_resource type="Script" uid="uid://dfqger3fdq053" path="res://Scenes/main.gd" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://darovhn36ipjb" path="res://Scenes/activity_scheduler.tscn" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://cnn2y8cbyyc2u" path="res://Scenes/event_creator.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://dnxwb4t8pk6sq" path="res://Scenes/walking_tracker.tscn" id="2_jjvhh"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -24,6 +25,8 @@ grow_vertical = 2
 color = Color(0.09019608, 0.09019608, 0.09019608, 1)
 
 [node name="ActivityTracking" type="Node" parent="."]
+
+[node name="WalkingTracker" parent="ActivityTracking" instance=ExtResource("2_jjvhh")]
 
 [node name="ActivityScheduler" parent="ActivityTracking" instance=ExtResource("1_jjgbg")]
 

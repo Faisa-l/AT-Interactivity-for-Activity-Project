@@ -3,6 +3,8 @@
 
 class_name ActivityScheduler extends Node
 
+signal event_started(activity: String)
+signal event_ended(activity: String)
 var schedule : Array[ScheduledActivity]
 var current_event : ScheduledActivity
 
@@ -26,7 +28,7 @@ func schedule_activity(activity_name : String, starts : Dictionary, duration : i
 	print(new_activity.starts)
 
 func _on_timer_timeout() -> void:
-	var now : int = Time.get_unix_time_from_system()
+	var now : float = Time.get_unix_time_from_system()
 	for event in schedule:
 		# Should an activity be running now?
 		var start : int = Time.get_unix_time_from_datetime_dict(event.starts)
@@ -34,7 +36,11 @@ func _on_timer_timeout() -> void:
 		if (start <= now and now <= end):
 			if !current_event: 
 				current_event = event
+				event_started.emit(current_event.activity)
 			print("ongoing event")
 			break
+		
+		# No event is running
 		else:
+			event_ended.emit(current_event.activity)
 			current_event = null
