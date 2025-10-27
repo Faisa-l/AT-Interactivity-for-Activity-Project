@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7ral4ico0xjq"]
+
+[ext_resource type="Script" uid="uid://va6uod8g48or" path="res://Scripts/displayed_activity_notification.gd" id="1_pdm4c"]
+
+[node name="DisplayedActivityNotification" type="PanelContainer"]
+offset_right = 267.0
+offset_bottom = 85.0
+script = ExtResource("1_pdm4c")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Details" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Activity" type="Label" parent="MarginContainer/HBoxContainer/Details"]
+layout_mode = 2
+text = "Activity"
+
+[node name="Time" type="Label" parent="MarginContainer/HBoxContainer/Details"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "The Time This Takes Place At Is Here "
+autowrap_mode = 2
+
+[node name="Tracking" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/Tracking"]
+layout_mode = 2
+text = "Distance"
+
+[node name="ValueDisplay" type="Label" parent="MarginContainer/HBoxContainer/Tracking"]
+layout_mode = 2
+text = "Distance"

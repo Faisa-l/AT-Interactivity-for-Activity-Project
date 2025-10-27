@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dnxwb4t8pk6sq"]
 
-[ext_resource type="Script" uid="uid://ceeuh1ny323yr" path="res://walking_tracker.gd" id="1_yo1tk"]
+[ext_resource type="Script" uid="uid://ceeuh1ny323yr" path="res://Scripts/walking_tracker.gd" id="1_yo1tk"]
 
 [node name="WalkingTracker" type="Node"]
 script = ExtResource("1_yo1tk")
