@@ -27,6 +27,7 @@ func schedule_activity(activity_name : String, starts : Dictionary, duration : i
 	schedule.push_back(new_activity)
 	print(new_activity.starts)
 
+# Timer duration will be when this checks for activities
 func _on_timer_timeout() -> void:
 	var now : float = Time.get_unix_time_from_system()
 	for event in schedule:
