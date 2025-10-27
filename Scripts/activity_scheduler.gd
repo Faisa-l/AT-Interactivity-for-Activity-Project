@@ -30,20 +30,29 @@ func schedule_activity(activity_name : String, starts : Dictionary, duration : i
 
 # Timer duration will be when this checks for activities
 func _on_timer_timeout() -> void:
-	var now : float = Time.get_unix_time_from_system()
+	# Loops through each event in the schedule and checks if it is active or not
+	
+	var assigned : bool = false
 	for event in schedule:
-		# Should an activity be running now?
-		var start : int = Time.get_unix_time_from_datetime_dict(event.starts)
-		var end : int = start + (event.duration*60)
-		if (start <= now and now <= end):
-			if !current_event: 
+		if !assigned and is_event_active(event):
+			if !current_event:
 				current_event = event
 				event_started.emit(current_event.activity)
-			print("ongoing event")
-			break
-		
-		# No event is running
+			assigned = true
+		# Stop this event if it is the current event
 		else:
-			if current_event:
+			if current_event and event == current_event:
 				event_ended.emit(current_event.activity)
-			current_event = null
+				current_event = null
+
+# Checks if this event should be running
+func is_event_active(event : ScheduledActivity) -> bool:
+	var now : float = Time.get_unix_time_from_system()
+	var start : int = Time.get_unix_time_from_datetime_dict(event.starts)
+	var end : int = start + (event.duration*60)
+	if (start <= now and now <= end):
+		print("event " + event.activity + " is active")
+		return true
+	else:
+		print("event " + event.activity + " is not active")
+		return false
