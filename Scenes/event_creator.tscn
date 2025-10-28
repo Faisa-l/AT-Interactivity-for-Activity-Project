@@ -3,58 +3,67 @@
 [ext_resource type="Script" uid="uid://24g8myqs06hp" path="res://Scripts/input_text_validation.gd" id="1_31knt"]
 [ext_resource type="Script" uid="uid://jmmq4h6whmf3" path="res://Scripts/event_creator.gd" id="1_wwcuh"]
 
-[node name="EventCreator" type="VBoxContainer"]
-offset_right = 140.0
-offset_bottom = 40.0
-size_flags_horizontal = 4
+[node name="EventCreator" type="PanelContainer"]
+offset_right = 264.0
+offset_bottom = 100.0
+scale = Vector2(1.011298, 1)
 script = ExtResource("1_wwcuh")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.32156864, 0.32156864, 0.3764706, 1)
+
+[node name="Container" type="VBoxContainer" parent="."]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container"]
 layout_mode = 2
 
-[node name="Hours" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Hours" type="VBoxContainer" parent="Container/HBoxContainer"]
 layout_mode = 2
 
-[node name="HourLabel" type="Label" parent="HBoxContainer/Hours"]
+[node name="HourLabel" type="Label" parent="Container/HBoxContainer/Hours"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Hour"
 
-[node name="HourEdit" type="SpinBox" parent="HBoxContainer/Hours"]
+[node name="HourEdit" type="SpinBox" parent="Container/HBoxContainer/Hours"]
 layout_mode = 2
 max_value = 24.0
 rounded = true
 
-[node name="Minutes" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Minutes" type="VBoxContainer" parent="Container/HBoxContainer"]
 layout_mode = 2
 
-[node name="MinuteLabel" type="Label" parent="HBoxContainer/Minutes"]
+[node name="MinuteLabel" type="Label" parent="Container/HBoxContainer/Minutes"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Minute"
 
-[node name="MinuteEdit" type="SpinBox" parent="HBoxContainer/Minutes"]
+[node name="MinuteEdit" type="SpinBox" parent="Container/HBoxContainer/Minutes"]
 layout_mode = 2
 max_value = 60.0
 rounded = true
 
-[node name="Activity" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Activity" type="VBoxContainer" parent="Container/HBoxContainer"]
 layout_mode = 2
 
-[node name="ActivityLabel" type="Label" parent="HBoxContainer/Activity"]
+[node name="ActivityLabel" type="Label" parent="Container/HBoxContainer/Activity"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Activity"
 
-[node name="ActivityEdit" type="LineEdit" parent="HBoxContainer/Activity"]
+[node name="ActivityEdit" type="LineEdit" parent="Container/HBoxContainer/Activity"]
 layout_mode = 2
 max_length = 12
 expand_to_text_length = true
 script = ExtResource("1_31knt")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="Container"]
 layout_mode = 2
 text = "Add event"
 
-[connection signal="text_changed" from="HBoxContainer/Activity/ActivityEdit" to="HBoxContainer/Activity/ActivityEdit" method="_on_text_changed"]
-[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="text_changed" from="Container/HBoxContainer/Activity/ActivityEdit" to="Container/HBoxContainer/Activity/ActivityEdit" method="_on_text_changed"]
+[connection signal="button_up" from="Container/Button" to="." method="_on_button_button_up"]

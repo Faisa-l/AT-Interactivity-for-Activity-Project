@@ -1,18 +1,18 @@
-class_name EventCreator extends VBoxContainer
+class_name EventCreator extends PanelContainer
 
 signal event_submitted(hours: int, minutes: int, activity : String)
 
 @onready
-var hours_box : SpinBox = $HBoxContainer/Hours/HourEdit
+var hours_box : SpinBox = $Container/HBoxContainer/Hours/HourEdit
 
 @onready
-var minutes_box : SpinBox= $HBoxContainer/Minutes/MinuteEdit
+var minutes_box : SpinBox= $Container/HBoxContainer/Minutes/MinuteEdit
 
 @onready
-var activity_box : LineEdit = $HBoxContainer/Activity/ActivityEdit
+var activity_box : LineEdit = $Container/HBoxContainer/Activity/ActivityEdit
 
 @onready
-var button : Button = $Button
+var button : Button = $Container/Button
 
 func _ready() -> void:
 	hours_box.get_line_edit().context_menu_enabled = false
