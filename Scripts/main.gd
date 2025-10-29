@@ -13,6 +13,9 @@ var walking_tracker : WalkingTracker = $ActivityTracking/WalkingTracker
 var notification_list : VBoxContainer = $ActivityNotifications
 
 @onready
+var user_pet : UserPet = $UserPet
+
+@onready
 var notification_scene : PackedScene = load("res://Scenes/displayed_activity_notification.tscn")
 
 var notification_pairs : Dictionary[String, DisplayedActivityNotification]
@@ -53,3 +56,4 @@ func process_event_running(event: ScheduledActivity) -> void:
 	if event.activity == "Walking":
 		event.result = walking_tracker.distance_travelled
 		notification_pairs["Walking"].activity_value_label.text = str(event.result)
+		user_pet.on_event_ended(event)

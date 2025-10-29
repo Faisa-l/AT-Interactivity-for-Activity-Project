@@ -1,4 +1,4 @@
-extends Node
+class_name UserPet extends Node
 
 # The pet acts as a representation of the physical activity performed by the user
 # Its stats will change based on the result of an activity
@@ -18,10 +18,15 @@ func initialise() -> void:
 		pet_stats.clear()
 	
 	for stat in _stats:
-		pet_stats[stat] = 0.0
+		pet_stats[stat] = 0.0	
 
 # Process the activity and then run its process
 func on_event_ended(event: ScheduledActivity) -> void:
 	
 	if event.activity == "Walking":
 		pet_stats["Speed"] += event.result
+	
+	print("New stats:")
+	for stat in pet_stats.keys():
+		print(stat + " : " + str(pet_stats[stat]))
+	

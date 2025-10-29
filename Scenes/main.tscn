@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc2u0bi24a4bc"]
+[gd_scene load_steps=6 format=3 uid="uid://cc2u0bi24a4bc"]
 
 [ext_resource type="Script" uid="uid://dfqger3fdq053" path="res://Scripts/main.gd" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://darovhn36ipjb" path="res://Scenes/activity_scheduler.tscn" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://cnn2y8cbyyc2u" path="res://Scenes/event_creator.tscn" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://dnxwb4t8pk6sq" path="res://Scenes/walking_tracker.tscn" id="2_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://c43owxn3dla16" path="res://Scenes/user_pet.tscn" id="5_kry3j"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -55,3 +56,5 @@ offset_right = 20.0
 offset_bottom = 120.00001
 grow_horizontal = 2
 theme_override_constants/separation = 15
+
+[node name="UserPet" parent="." instance=ExtResource("5_kry3j")]
