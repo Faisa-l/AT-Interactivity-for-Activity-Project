@@ -37,18 +37,19 @@ func on_event_submitted(hours: int, minutes: int, activity : String) -> void:
 		notification_pairs[activity] = card
 
 # When a scheduled event starts, start the corresponding tracker
-func process_event_started(activity: String) -> void:
-	if activity == "Walking":
+func process_event_started(event: ScheduledActivity) -> void:
+	if event.activity == "Walking":
 		walking_tracker.reset()
 		walking_tracker.start()
 
 # When a scheduled event ends, stop the corresponding tracker
-func process_event_ended(activity: String) -> void:
-	if activity == "Walking":
+func process_event_ended(event: ScheduledActivity) -> void:
+	if event.activity == "Walking":
 		walking_tracker.pause()
 		print("Walked distance: " + str(walking_tracker.distance_travelled))
 
 # When a scheduled event is running, perform its tracker thing
-func process_event_running(activity: String) -> void:
-	if activity == "Walking":
-		notification_pairs["Walking"].activity_value_label.text = str(walking_tracker.distance_travelled)
+func process_event_running(event: ScheduledActivity) -> void:
+	if event.activity == "Walking":
+		event.result = walking_tracker.distance_travelled
+		notification_pairs["Walking"].activity_value_label.text = str(event.result)

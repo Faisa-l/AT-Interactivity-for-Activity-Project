@@ -3,9 +3,9 @@
 
 class_name ActivityScheduler extends Node
 
-signal event_started(activity: String)
-signal event_ended(activity: String)
-signal event_running(activity: String)
+signal event_started(event: ScheduledActivity)
+signal event_ended(event: ScheduledActivity)
+signal event_running(event: ScheduledActivity)
 var schedule : Array[ScheduledActivity]
 var current_event : ScheduledActivity
 
@@ -38,17 +38,17 @@ func _on_timer_timeout() -> void:
 		if !assigned and is_event_active(event):
 			if !current_event:
 				current_event = event
-				event_started.emit(current_event.activity)
+				event_started.emit(current_event)
 			assigned = true
 		# Stop this event if it is the current event
 		else:
 			if current_event and event == current_event:
-				event_ended.emit(current_event.activity)
+				event_ended.emit(current_event)
 				current_event = null
 	
 	# Run the tracker for the current event
 	if current_event:
-		event_running.emit(current_event.activity)
+		event_running.emit(current_event)
 
 # Checks if this event should be running
 func is_event_active(event : ScheduledActivity) -> bool:

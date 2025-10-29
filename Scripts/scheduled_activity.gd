@@ -9,3 +9,6 @@ var starts : Dictionary
 
 # Duration of the activity in whole minutes
 var duration : int
+
+# The result of performing the activity
+var result : float
