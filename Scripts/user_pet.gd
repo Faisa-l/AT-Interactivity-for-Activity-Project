@@ -42,21 +42,23 @@ func initialise() -> void:
 func on_event_ended(event: ScheduledActivity) -> void:
 	
 	if event.activity == "Walking":
-		pet_stats["Speed"] += process_walking(event)
+		var stat_boosts : Dictionary = process_walking(event)
+		combine_at_intersection(pet_stats, stat_boosts)
 	
 	update_pet()
 
 # Will return the result of the stat increase for walking
-func process_walking(event: ScheduledActivity) -> float:
-	return 0.5 * event.result
+func process_walking(event: ScheduledActivity) -> Dictionary:
+	var out : Dictionary = create_pet_dict()
+	out["Speed"] = 0.5 * event.result
+	out["Health"] = 1
+	return out 
 
 # Updates the text which displays the pet stats
 func update_display_stats() -> void:
-	print("New stats:")
 	var label_string : String = ""
 	for stat in pet_stats.keys():
 		var string : String = stat + " : " + str(pet_stats[stat])
-		print(string)
 		label_string += string + "\n"
 	debug_stats_label.text = label_string
 
@@ -108,3 +110,19 @@ func get_rgba_value_from_stat(value : float) -> float:
 	out *= 0.1
 	
 	return clamp(out, 0.0, 1.0)
+
+# Creates an empty dictionary of pet values
+func create_pet_dict() -> Dictionary:
+	var out_dict : Dictionary
+	for stat in _stats:
+		out_dict[stat] = 0.0	
+	return out_dict
+
+func combine_at_intersection(target : Dictionary, dict : Dictionary) -> Dictionary:
+	var out : Dictionary = target
+	
+	for key in out.keys():
+		if dict.has(key):
+			out[key] += dict[key]
+	
+	return out
