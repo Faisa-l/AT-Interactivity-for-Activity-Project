@@ -4,4 +4,19 @@
 
 [node name="UserPet" type="Node"]
 script = ExtResource("1_tsvhk")
-_stats = Array[String](["Speed"])
+_stats = Array[String](["Speed", "Size", "Endurance", "Health"])
+
+[node name="DebugContainer" type="VBoxContainer" parent="."]
+offset_right = 105.0
+offset_bottom = 127.0
+
+[node name="StatsLabel" type="Label" parent="DebugContainer"]
+layout_mode = 2
+
+[node name="ButtonContainer" type="ScrollContainer" parent="DebugContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugContainer/ButtonContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
