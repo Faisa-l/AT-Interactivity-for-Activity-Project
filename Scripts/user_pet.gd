@@ -107,7 +107,7 @@ func get_rgba_value_from_stat(value : float) -> float:
 	var out : float = value
 	
 	# Logic for manipulating the stat value into an out value goes here
-	out *= 0.1
+	out /= max_stat_saturate
 	
 	return clamp(out, 0.0, 1.0)
 
