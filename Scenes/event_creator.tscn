@@ -45,7 +45,7 @@ text = "Hour"
 
 [node name="HourEdit" type="SpinBox" parent="Container/HBoxContainer/Hours"]
 layout_mode = 2
-max_value = 24.0
+max_value = 23.0
 rounded = true
 
 [node name="Minutes" type="VBoxContainer" parent="Container/HBoxContainer"]
@@ -58,7 +58,7 @@ text = "Minute"
 
 [node name="MinuteEdit" type="SpinBox" parent="Container/HBoxContainer/Minutes"]
 layout_mode = 2
-max_value = 60.0
+max_value = 59.0
 rounded = true
 
 [node name="Activity" type="VBoxContainer" parent="Container/HBoxContainer"]

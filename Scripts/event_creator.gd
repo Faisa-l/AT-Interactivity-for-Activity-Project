@@ -28,7 +28,7 @@ func _ready() -> void:
 # Submit the event
 func _on_button_button_up() -> void:
 	# Ensure things are valid
-	if hours_box.value <= 0 or hours_box.value > 24: return
-	if minutes_box.value <= 0 or minutes_box.value > 60: return
+	if hours_box.value < 0 or hours_box.value > 24: return
+	if minutes_box.value < 0 or minutes_box.value > 60: return
 	
 	event_submitted.emit(hours_box.value, minutes_box.value, activity_box.text, duration_box.value, name_box.text)
