@@ -15,34 +15,44 @@ theme_override_constants/margin_right = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Details" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Activity" type="Label" parent="MarginContainer/HBoxContainer/Details"]
+[node name="EventName" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "The Name Of The Event"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Details" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Activity" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Details"]
 layout_mode = 2
 text = "Activity"
 
-[node name="Time" type="Label" parent="MarginContainer/HBoxContainer/Details"]
+[node name="Time" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Details"]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "The Time This Takes Place At Is Here "
 autowrap_mode = 2
 
-[node name="EndsAt" type="Label" parent="MarginContainer/HBoxContainer/Details"]
+[node name="EndsAt" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Details"]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "The Time This Ends At Is Here "
 autowrap_mode = 2
 
-[node name="Tracking" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="Tracking" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 0
 
-[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/Tracking"]
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Tracking"]
 layout_mode = 2
 text = "Distance"
 
-[node name="ValueDisplay" type="Label" parent="MarginContainer/HBoxContainer/Tracking"]
+[node name="ValueDisplay" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/Tracking"]
 layout_mode = 2
 text = "Distance"

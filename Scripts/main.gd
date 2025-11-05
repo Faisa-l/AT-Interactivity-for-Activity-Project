@@ -26,13 +26,13 @@ func _ready() -> void:
 	activity_scheduler.event_ended.connect(process_event_ended)
 	activity_scheduler.event_running.connect(process_event_running)
 
-func on_event_submitted(hours: int, minutes: int, activity : String, duration : int) -> void:
+func on_event_submitted(hours: int, minutes: int, activity : String, duration : int, title : String) -> void:
 	# Convert to dictionary
 	var time : Dictionary = Time.get_datetime_dict_from_system()
 	time["hour"] = hours
 	time["minute"] = minutes
 	
-	var success = activity_scheduler.schedule_activity(activity, time, duration)
+	var success = activity_scheduler.schedule_activity(activity, time, duration, title)
 	if success:
 		var card : DisplayedActivityNotification = notification_scene.instantiate()
 		notification_list.add_child(card)

@@ -12,3 +12,6 @@ var duration : int
 
 # The result of performing the activity
 var result : float
+
+# Optional name for the activity
+var title : String 

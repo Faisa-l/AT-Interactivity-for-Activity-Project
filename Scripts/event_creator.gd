@@ -1,6 +1,6 @@
 class_name EventCreator extends PanelContainer
 
-signal event_submitted(hours: int, minutes: int, activity : String)
+signal event_submitted(hours: int, minutes: int, activity : String, duration : int, title : String)
 
 @onready
 var hours_box : SpinBox = $Container/HBoxContainer/Hours/HourEdit
@@ -13,6 +13,9 @@ var activity_box : LineEdit = $Container/HBoxContainer/Activity/ActivityEdit
 
 @onready
 var duration_box : SpinBox = $Container/HBoxContainer/Duration/DurationEdit
+
+@onready
+var name_box : LineEdit = $Container/EventName/NameEdit
 
 @onready
 var button : Button = $Container/Button
@@ -28,4 +31,4 @@ func _on_button_button_up() -> void:
 	if hours_box.value <= 0 or hours_box.value > 24: return
 	if minutes_box.value <= 0 or minutes_box.value > 60: return
 	
-	event_submitted.emit(hours_box.value, minutes_box.value, activity_box.text, duration_box.value)
+	event_submitted.emit(hours_box.value, minutes_box.value, activity_box.text, duration_box.value, name_box.text)

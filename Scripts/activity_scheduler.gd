@@ -13,7 +13,7 @@ func _ready() -> void:
 	event_ended.connect(clear_current_event)
 
 # Schedules an activity_name to perform at
-func schedule_activity(activity_name : String, starts : Dictionary, duration : int) -> ScheduledActivity:
+func schedule_activity(activity_name : String, starts : Dictionary, duration : int, title : String = "Event") -> ScheduledActivity:
 	# Make sure activity is not overlapping an existing one
 	var bstart : int = Time.get_unix_time_from_datetime_dict(starts)
 	var bend : int = bstart + (duration*60)
@@ -28,6 +28,7 @@ func schedule_activity(activity_name : String, starts : Dictionary, duration : i
 	new_activity.activity = activity_name
 	new_activity.starts = starts
 	new_activity.duration = duration
+	new_activity.title = title
 	schedule.push_back(new_activity)
 	print(new_activity.starts)
 	return new_activity
