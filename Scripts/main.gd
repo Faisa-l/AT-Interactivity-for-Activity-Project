@@ -50,10 +50,25 @@ func process_event_ended(event: ScheduledActivity) -> void:
 	if event.activity == "Walking":
 		walking_tracker.pause()
 		print("Walked distance: " + str(walking_tracker.distance_travelled))
+		user_pet.on_event_ended(event)
+		notification_pairs[event.activity].queue_free()
 
 # When a scheduled event is running, perform its tracker thing
 func process_event_running(event: ScheduledActivity) -> void:
 	if event.activity == "Walking":
 		event.result = walking_tracker.distance_travelled
 		notification_pairs["Walking"].activity_value_label.text = str(event.result)
-		user_pet.on_event_ended(event)
+		# user_pet.on_event_ended(event)
+
+#region debug
+
+# Debug function to end the event immediately
+func force_end_event() -> void:
+	if activity_scheduler.current_event:
+		activity_scheduler.event_ended.emit(activity_scheduler.current_event)
+
+# For debug
+func _on_end_event_button_button_up() -> void:
+	force_end_event()
+
+#endregion

@@ -9,6 +9,9 @@ signal event_running(event: ScheduledActivity)
 var schedule : Array[ScheduledActivity]
 var current_event : ScheduledActivity
 
+func _ready() -> void:
+	event_ended.connect(clear_current_event)
+
 # Schedules an activity_name to perform at
 func schedule_activity(activity_name : String, starts : Dictionary, duration : int) -> ScheduledActivity:
 	# Make sure activity is not overlapping an existing one
@@ -61,3 +64,12 @@ func is_event_active(event : ScheduledActivity) -> bool:
 	else:
 		print("event " + event.activity + " is not active")
 		return false
+
+# Ensures an event ending clears the current event
+func clear_current_event(_event : ScheduledActivity) -> void:
+	for i in range(0, schedule.size()):
+		if schedule[i] == current_event:
+			schedule.remove_at(i)
+			current_event = null
+			return
+	
