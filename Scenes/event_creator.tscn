@@ -20,6 +20,7 @@ size_flags_horizontal = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Container"]
 layout_mode = 2
+theme_override_constants/separation = 8
 
 [node name="Hours" type="VBoxContainer" parent="Container/HBoxContainer"]
 layout_mode = 2
@@ -60,6 +61,21 @@ layout_mode = 2
 max_length = 12
 expand_to_text_length = true
 script = ExtResource("1_31knt")
+
+[node name="Duration" type="VBoxContainer" parent="Container/HBoxContainer"]
+layout_mode = 2
+
+[node name="DurationLabel" type="Label" parent="Container/HBoxContainer/Duration"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Duration"
+
+[node name="DurationEdit" type="SpinBox" parent="Container/HBoxContainer/Duration"]
+layout_mode = 2
+min_value = 1.0
+max_value = 60.0
+value = 1.0
+rounded = true
 
 [node name="Button" type="Button" parent="Container"]
 layout_mode = 2

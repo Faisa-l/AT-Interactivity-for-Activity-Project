@@ -28,6 +28,12 @@ layout_mode = 2
 text = "The Time This Takes Place At Is Here "
 autowrap_mode = 2
 
+[node name="EndsAt" type="Label" parent="MarginContainer/HBoxContainer/Details"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "The Time This Ends At Is Here "
+autowrap_mode = 2
+
 [node name="Tracking" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
