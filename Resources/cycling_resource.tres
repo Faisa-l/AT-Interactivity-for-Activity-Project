@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PhysicalActivity" load_steps=2 format=3 uid="uid://c7r6wirhxw8vd"]
+
+[ext_resource type="Script" uid="uid://dxbuf0hyuehtf" path="res://Scripts/PhysicalActivity.gd" id="1_x5iqu"]
+
+[resource]
+script = ExtResource("1_x5iqu")
+activity_name = "Cycling"
+activity_Type = 2
+measurement = "Distance"
+metadata/_custom_type_script = "uid://dxbuf0hyuehtf"

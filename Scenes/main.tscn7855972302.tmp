@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://cc2u0bi24a4bc"]
+
+[ext_resource type="Script" uid="uid://dfqger3fdq053" path="res://Scripts/main.gd" id="1_8gbba"]
+[ext_resource type="PackedScene" uid="uid://darovhn36ipjb" path="res://Scenes/activity_scheduler.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://cnn2y8cbyyc2u" path="res://Scenes/event_creator.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://dnxwb4t8pk6sq" path="res://Scenes/walking_tracker.tscn" id="2_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://c43owxn3dla16" path="res://Scenes/user_pet.tscn" id="5_kry3j"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_8gbba")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09019608, 0.09019608, 0.09019608, 1)
+
+[node name="ActivityTracking" type="Node" parent="."]
+
+[node name="WalkingTracker" parent="ActivityTracking" instance=ExtResource("2_jjvhh")]
+
+[node name="ActivityScheduler" parent="ActivityTracking" instance=ExtResource("1_jjgbg")]
+
+[node name="EventCreator" parent="." instance=ExtResource("2_bo1nx")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -174.99998
+offset_top = -315.0
+offset_right = 175.0
+offset_bottom = -187.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ActivityNotifications" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 80.0
+offset_right = 20.0
+offset_bottom = 120.00001
+grow_horizontal = 2
+theme_override_constants/separation = 15
+
+[node name="UserPet" parent="." instance=ExtResource("5_kry3j")]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(100, 250)
+layout_mode = 0
+offset_left = 593.0
+offset_top = 1015.0
+offset_right = 705.0
+offset_bottom = 1265.0
+
+[node name="DebugButtons" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EndEventButton" type="Button" parent="ScrollContainer/DebugButtons"]
+layout_mode = 2
+text = "End Event"
+
+[connection signal="button_up" from="ScrollContainer/DebugButtons/EndEventButton" to="." method="_on_end_event_button_button_up"]

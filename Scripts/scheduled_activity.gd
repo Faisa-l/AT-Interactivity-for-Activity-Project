@@ -2,7 +2,7 @@
 class_name ScheduledActivity
 
 # What the activity actually is
-var activity : String
+var activity : PhysicalActivity
 
 # What time this activity takes place at
 var starts : Dictionary

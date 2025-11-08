@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnn2y8cbyyc2u"]
+[gd_scene load_steps=4 format=3 uid="uid://cnn2y8cbyyc2u"]
 
 [ext_resource type="Script" uid="uid://24g8myqs06hp" path="res://Scripts/input_text_validation.gd" id="1_31knt"]
 [ext_resource type="Script" uid="uid://jmmq4h6whmf3" path="res://Scripts/event_creator.gd" id="1_wwcuh"]
+[ext_resource type="PackedScene" uid="uid://dxv30u0l6yrgr" path="res://Scenes/physical_activities_list.tscn" id="2_tglag"]
 
 [node name="EventCreator" type="PanelContainer"]
 offset_right = 264.0
@@ -69,11 +70,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Activity"
 
-[node name="ActivityEdit" type="LineEdit" parent="Container/HBoxContainer/Activity"]
+[node name="PhysicalActivityList" parent="Container/HBoxContainer/Activity" instance=ExtResource("2_tglag")]
 layout_mode = 2
-max_length = 12
-expand_to_text_length = true
-script = ExtResource("1_31knt")
 
 [node name="Duration" type="VBoxContainer" parent="Container/HBoxContainer"]
 layout_mode = 2
@@ -94,5 +92,11 @@ rounded = true
 layout_mode = 2
 text = "Add event"
 
-[connection signal="text_changed" from="Container/HBoxContainer/Activity/ActivityEdit" to="Container/HBoxContainer/Activity/ActivityEdit" method="_on_text_changed"]
+[node name="ActivityEdit" type="LineEdit" parent="Container"]
+layout_mode = 2
+max_length = 12
+expand_to_text_length = true
+script = ExtResource("1_31knt")
+
 [connection signal="button_up" from="Container/Button" to="." method="_on_button_button_up"]
+[connection signal="text_changed" from="Container/ActivityEdit" to="Container/ActivityEdit" method="_on_text_changed"]

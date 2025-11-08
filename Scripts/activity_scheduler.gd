@@ -13,7 +13,7 @@ func _ready() -> void:
 	event_ended.connect(clear_current_event)
 
 # Schedules an activity_name to perform at
-func schedule_activity(activity_name : String, starts : Dictionary, duration : int, title : String = "Event") -> ScheduledActivity:
+func schedule_activity(activity : PhysicalActivity, starts : Dictionary, duration : int, title : String = "Event") -> ScheduledActivity:
 	# Make sure activity is not overlapping an existing one
 	var bstart : int = Time.get_unix_time_from_datetime_dict(starts)
 	var bend : int = bstart + (duration*60)
@@ -25,7 +25,7 @@ func schedule_activity(activity_name : String, starts : Dictionary, duration : i
 			return null
 	
 	var new_activity : ScheduledActivity = ScheduledActivity.new()
-	new_activity.activity = activity_name
+	new_activity.activity = activity
 	new_activity.starts = starts
 	new_activity.duration = duration
 	new_activity.title = title
@@ -60,10 +60,10 @@ func is_event_active(event : ScheduledActivity) -> bool:
 	var start : int = Time.get_unix_time_from_datetime_dict(event.starts)
 	var end : int = start + (event.duration*60)
 	if (start <= now and now <= end):
-		print("event " + event.activity + " is active")
+		print("event " + event.activity.activity_name + " is active")
 		return true
 	else:
-		print("event " + event.activity + " is not active")
+		print("event " + event.activity.activity_name + " is not active")
 		return false
 
 # Ensures an event ending clears the current event
