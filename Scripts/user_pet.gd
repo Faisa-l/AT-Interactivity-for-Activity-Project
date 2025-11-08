@@ -40,7 +40,7 @@ func initialise() -> void:
 
 # Process the activity and then run its process
 func on_event_ended(event: ScheduledActivity) -> void:
-	if event.activity.type.activity_Type == Enums.ActivityType.WALKING:
+	if event.activity.activity_Type == Enums.ActivityType.WALKING:
 		var stat_boosts : Dictionary = process_walking(event)
 		combine_at_intersection(pet_stats, stat_boosts)
 	

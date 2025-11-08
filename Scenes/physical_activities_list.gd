@@ -9,6 +9,7 @@ var physical_activities : Dictionary[String, PhysicalActivity]
 var container : VBoxContainer = $VBoxContainer
 
 var selected : PhysicalActivity
+var map : Dictionary[String, Button]
 
 func _ready() -> void:
 	initalise()
@@ -22,7 +23,15 @@ func initalise() -> void:
 		button.button_up.connect(func(): set_selected(activity))
 		
 		container.add_child(button)
+		map[activity] = button
 
-# Returns the physical activity when a button is clicked
+# Returns the physical activity when a button is clicked 
 func set_selected(activity : String) -> void:
 	selected = physical_activities[activity]
+	
+	# Make it look like this activity was selected
+	for atv in map.keys():
+		if atv == activity:
+			map[atv].text = "> " + atv + " <"
+		else:
+			map[atv].text = atv

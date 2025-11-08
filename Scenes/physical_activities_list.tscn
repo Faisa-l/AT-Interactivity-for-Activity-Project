@@ -6,7 +6,7 @@
 [ext_resource type="Resource" uid="uid://c7r6wirhxw8vd" path="res://Resources/cycling_resource.tres" id="4_nggsy"]
 
 [node name="PhysicalActivityList" type="ScrollContainer"]
-custom_minimum_size = Vector2(80, 40)
+custom_minimum_size = Vector2(120, 40)
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_7mn85")
