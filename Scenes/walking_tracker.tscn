@@ -1,10 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnxwb4t8pk6sq"]
+[gd_scene load_steps=4 format=3 uid="uid://dnxwb4t8pk6sq"]
 
 [ext_resource type="Script" uid="uid://ceeuh1ny323yr" path="res://Scripts/walking_tracker.gd" id="1_yo1tk"]
+[ext_resource type="Script" uid="uid://643s27tp3cph" path="res://Scenes/distance_tracker.gd" id="2_hwsny"]
+[ext_resource type="Texture2D" uid="uid://bbqhm78xt0m3a" path="res://icon.svg" id="3_l3tkk"]
 
 [node name="WalkingTracker" type="Node"]
 script = ExtResource("1_yo1tk")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("2_hwsny")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 382.0
+offset_top = 378.0
+offset_right = 510.0
+offset_bottom = 506.0
+texture = ExtResource("3_l3tkk")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
