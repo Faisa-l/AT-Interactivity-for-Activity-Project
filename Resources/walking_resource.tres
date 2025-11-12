@@ -6,4 +6,8 @@
 script = ExtResource("1_u5gfx")
 activity_name = "Walking"
 measurement = "Distance"
+stat_table = Dictionary[String, float]({
+"Health": 1.0,
+"Speed": 0.5
+})
 metadata/_custom_type_script = "uid://dxbuf0hyuehtf"

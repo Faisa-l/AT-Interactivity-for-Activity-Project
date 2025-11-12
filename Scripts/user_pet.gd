@@ -40,18 +40,12 @@ func initialise() -> void:
 
 # Process the activity and then run its process
 func on_event_ended(event: ScheduledActivity) -> void:
-	if event.activity.activity_Type == Enums.ActivityType.WALKING:
-		var stat_boosts : Dictionary = process_walking(event)
-		combine_at_intersection(pet_stats, stat_boosts)
+	var stat_boosts : Dictionary
+	for stat in event.activity.stat_table:
+		stat_boosts[stat] = event.activity.stat_table[stat] * event.result
 	
+	combine_at_intersection(pet_stats, stat_boosts)
 	update_pet()
-
-# Will return the result of the stat increase for walking
-func process_walking(event: ScheduledActivity) -> Dictionary:
-	var out : Dictionary = create_pet_dict()
-	out["Speed"] = 0.5 * event.result
-	out["Health"] = 1
-	return out 
 
 # Updates the text which displays the pet stats
 func update_display_stats() -> void:
