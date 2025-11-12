@@ -53,24 +53,11 @@ func process_event_ended(event: ScheduledActivity) -> void:
 	print("Activity result : " + event.activity.activity_name + " : " + str(trackers[event.activity.tracker_type].result))
 	user_pet.on_event_ended(event)
 	notification_pairs[event.activity.activity_name].queue_free()
-	
-	
-	#match event.activity.tracker_type:
-	#	Enums.ActivityType.WALKING:
-	#		walking_tracker.pause()
-	#		print("Walked distance: " + str(walking_tracker.distance_travelled))
-	#		user_pet.on_event_ended(event)
-	#		notification_pairs[event.activity.activity_name].queue_free()
 
 # When a scheduled event is running, perform its tracker thing
 func process_event_running(event: ScheduledActivity) -> void:
 	event.result = trackers[event.activity.tracker_type].result
 	notification_pairs[event.activity.activity_name].activity_value_label.text = str(event.result)
-	
-	#match event.activity.tracker_type:
-	#	Enums.ActivityType.WALKING:
-	#		event.result = walking_tracker.distance_travelled
-	#		notification_pairs["Walking"].activity_value_label.text = str(event.result)
 
 
 #region debug
