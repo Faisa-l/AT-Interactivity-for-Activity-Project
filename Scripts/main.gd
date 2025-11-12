@@ -19,12 +19,15 @@ var user_pet : UserPet = $UserPet
 var notification_scene : PackedScene = load("res://Scenes/displayed_activity_notification.tscn")
 
 var notification_pairs : Dictionary[String, DisplayedActivityNotification]
+var trackers : Dictionary[Enums.ActivityType, ActivityTracker]
 
 func _ready() -> void:
 	event_creator.event_submitted.connect(on_event_submitted)
 	activity_scheduler.event_started.connect(process_event_started)
 	activity_scheduler.event_ended.connect(process_event_ended)
 	activity_scheduler.event_running.connect(process_event_running)
+	
+	trackers[Enums.ActivityType.WALKING] = walking_tracker
 
 func on_event_submitted(hours: int, minutes: int, activity : PhysicalActivity, duration : int, title : String) -> void:
 	# Convert to dictionary
@@ -41,26 +44,33 @@ func on_event_submitted(hours: int, minutes: int, activity : PhysicalActivity, d
 
 # When a scheduled event starts, start the corresponding tracker
 func process_event_started(event: ScheduledActivity) -> void:
-	match event.activity.tracker_type:
-		Enums.ActivityType.WALKING:
-			walking_tracker.reset()
-			walking_tracker.start()
+	trackers[event.activity.tracker_type].reset()
+	trackers[event.activity.tracker_type].start()
 
 # When a scheduled event ends, stop the corresponding tracker
 func process_event_ended(event: ScheduledActivity) -> void:
-	match event.activity.tracker_type:
-		Enums.ActivityType.WALKING:
-			walking_tracker.pause()
-			print("Walked distance: " + str(walking_tracker.distance_travelled))
-			user_pet.on_event_ended(event)
-			notification_pairs[event.activity.activity_name].queue_free()
+	trackers[event.activity.tracker_type].pause()
+	print("Activity result : " + event.activity.activity_name + " : " + str(trackers[event.activity.tracker_type].result))
+	user_pet.on_event_ended(event)
+	notification_pairs[event.activity.activity_name].queue_free()
+	
+	
+	#match event.activity.tracker_type:
+	#	Enums.ActivityType.WALKING:
+	#		walking_tracker.pause()
+	#		print("Walked distance: " + str(walking_tracker.distance_travelled))
+	#		user_pet.on_event_ended(event)
+	#		notification_pairs[event.activity.activity_name].queue_free()
 
 # When a scheduled event is running, perform its tracker thing
 func process_event_running(event: ScheduledActivity) -> void:
-	match event.activity.tracker_type:
-		Enums.ActivityType.WALKING:
-			event.result = walking_tracker.distance_travelled
-			notification_pairs["Walking"].activity_value_label.text = str(event.result)
+	event.result = trackers[event.activity.tracker_type].result
+	notification_pairs[event.activity.activity_name].activity_value_label.text = str(event.result)
+	
+	#match event.activity.tracker_type:
+	#	Enums.ActivityType.WALKING:
+	#		event.result = walking_tracker.distance_travelled
+	#		notification_pairs["Walking"].activity_value_label.text = str(event.result)
 
 
 #region debug

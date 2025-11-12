@@ -1,4 +1,4 @@
-class_name WalkingTracker extends Node
+class_name WalkingTracker extends ActivityTracker
 
 # Tracks walking
 # Currently will emulate how this is likely to pick up the walking information from the phone
@@ -30,3 +30,4 @@ func reset():
 # Timeout will be when a distance has been travelled
 func _on_timer_timeout() -> void:
 	distance_travelled += travelling_speed
+	result = distance_travelled
