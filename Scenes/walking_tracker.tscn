@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dnxwb4t8pk6sq"]
 
 [ext_resource type="Script" uid="uid://ceeuh1ny323yr" path="res://Scripts/walking_tracker.gd" id="1_yo1tk"]
-[ext_resource type="Script" uid="uid://643s27tp3cph" path="res://Scenes/distance_tracker.gd" id="2_hwsny"]
+[ext_resource type="Script" uid="uid://643s27tp3cph" path="res://Scripts/distance_tracker.gd" id="2_hwsny"]
 [ext_resource type="Texture2D" uid="uid://bbqhm78xt0m3a" path="res://icon.svg" id="3_l3tkk"]
 
 [node name="WalkingTracker" type="Node"]

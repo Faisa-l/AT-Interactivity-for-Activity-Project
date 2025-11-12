@@ -9,6 +9,10 @@ var activity_name : String
 @export
 var activity_Type : Enums.ActivityType
 
+# Type of tracker used
+@export
+var tracker_type : Enums.ActivityType
+
 # How the activity is measured (distance, speed, steps, etc.)
 @export
 var measurement : String
