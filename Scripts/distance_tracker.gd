@@ -13,15 +13,16 @@ func _ready() -> void:
 	initalise()
 
 func initalise() -> void:
-	print(Engine.get_singleton_list())
-	AndroidServices = Engine.get_singleton("AndroidTelemetryUtils")
 	
+	AndroidServices = Engine.get_singleton("AndroidTelemetryUtils")
 	if !AndroidServices:
 		print("No android plugin")
 		return
-	print("hello")
 	
-	AndroidServices.DisplayToast()
+	AndroidServices.TestSignal.connect(signal_return)
+	
+	AndroidServices.DisplayToast("Hi")
+	AndroidServices.InvokeTestSignal()
 
 func _physics_process(_delta: float) -> void:
 	if !AndroidServices: return
@@ -31,3 +32,6 @@ func _physics_process(_delta: float) -> void:
 	col.a8 = clamp(pow(Input.get_accelerometer().length(),2), 0, 255)
 	tex.modulate = col
 	#endregion
+
+func signal_return(string : String) -> void:
+	print(string)
