@@ -41,6 +41,12 @@ class AndroidExportPlugin extends EditorExportPlugin:
 		else:
 			return PackedStringArray(["res://addons/AndroidTelemetryUtils/AndroidTelemetryUtils-release.aar"])
 	
+	func _get_android_dependencies(platform: EditorExportPlatform, debug: bool) -> PackedStringArray:
+		return PackedStringArray(
+			["androidx.core:core-ktx:1.13.1",
+			"androidx.activity:activity-compose:1.9.3"]
+		)
+	
 	# Returns the plugin name
 	func _get_name() -> String:
 		return _plugin_name

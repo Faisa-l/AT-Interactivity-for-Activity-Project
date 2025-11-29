@@ -19,4 +19,18 @@ offset_right = 510.0
 offset_bottom = 506.0
 texture = ExtResource("3_l3tkk")
 
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 0, 1, 1)
+offset_left = 399.0
+offset_top = 185.0
+offset_right = 564.0
+offset_bottom = 281.0
+text = "buton
+"
+
+[node name="Timer2" type="Timer" parent="."]
+autostart = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="button_up" from="Button" to="Node" method="_on_button_button_up"]
+[connection signal="timeout" from="Timer2" to="Node" method="_on_timer_2_timeout"]

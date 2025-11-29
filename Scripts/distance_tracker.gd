@@ -5,6 +5,7 @@ class_name DistanceTracker extends Node
 # NOTE: this class will not work unless project is running on a phone
 # Will always return null when this is ran on desktop
 var AndroidServices = null
+var started = false
 
 @onready
 var tex : TextureRect = $"../TextureRect"
@@ -19,10 +20,14 @@ func initalise() -> void:
 		print("No android plugin")
 		return
 	
+	AndroidServices.Initalise()
+	AndroidServices.RequestPermissions()
 	AndroidServices.TestSignal.connect(signal_return)
 	
-	AndroidServices.DisplayToast("Hi")
-	AndroidServices.InvokeTestSignal()
+	#AndroidServices.DisplayToast("Hi")
+	#AndroidServices.InvokeTestSignal()
+	
+
 
 func _physics_process(_delta: float) -> void:
 	if !AndroidServices: return
@@ -33,5 +38,21 @@ func _physics_process(_delta: float) -> void:
 	tex.modulate = col
 	#endregion
 
+
+
 func signal_return(string : String) -> void:
 	print(string)
+
+
+func _on_button_button_up() -> void:
+	# OBJECTIVE: make this line of code work
+	AndroidServices.StartStepCounter()
+
+
+func _on_timer_2_timeout() -> void:
+	if started: 
+		return
+	if AndroidServices.SetStepCounterBinding():
+		print("woah")
+	else:
+		print("none")
