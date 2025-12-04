@@ -31,6 +31,12 @@ text = "buton
 [node name="Timer2" type="Timer" parent="."]
 autostart = true
 
+[node name="Label" type="Label" parent="."]
+offset_left = 232.0
+offset_top = 325.0
+offset_right = 272.0
+offset_bottom = 348.0
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="button_up" from="Button" to="Node" method="_on_button_button_up"]
 [connection signal="timeout" from="Timer2" to="Node" method="_on_timer_2_timeout"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dxv30u0l6yrgr"]
 
-[ext_resource type="Script" uid="uid://bnwba31wvoesd" path="res://Scenes/physical_activities_list.gd" id="1_7mn85"]
+[ext_resource type="Script" uid="uid://bnwba31wvoesd" path="res://Scripts/physical_activities_list.gd" id="1_7mn85"]
 [ext_resource type="Script" uid="uid://dxbuf0hyuehtf" path="res://Scripts/PhysicalActivity.gd" id="2_fui1x"]
 [ext_resource type="Resource" uid="uid://cykn3m6s658ph" path="res://Resources/walking_resource.tres" id="3_nggsy"]
 [ext_resource type="Resource" uid="uid://c7r6wirhxw8vd" path="res://Resources/cycling_resource.tres" id="4_nggsy"]
