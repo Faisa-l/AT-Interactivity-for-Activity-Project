@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfj5mure47nf2"]
+
+[ext_resource type="Script" uid="uid://d2djuessb2m8" path="res://Scripts/friends_list.gd" id="1_lowrt"]
+
+[node name="FriendsList" type="VBoxContainer"]
+custom_minimum_size = Vector2(160, 200)
+offset_right = 160.0
+offset_bottom = 700.0
+alignment = 2
+script = ExtResource("1_lowrt")
+
+[node name="List" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 2
+
+[node name="Debug" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="NameInput" type="LineEdit" parent="Debug"]
+layout_mode = 2
+placeholder_text = "Name"
+max_length = 16
+context_menu_enabled = false
+caret_blink = true
+
+[node name="Button" type="Button" parent="Debug"]
+layout_mode = 2
+text = "Add Friend
+"
+
+[connection signal="button_up" from="Debug/Button" to="." method="_on_button_button_up"]
