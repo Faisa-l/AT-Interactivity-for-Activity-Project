@@ -49,7 +49,7 @@ func process_event_started(event: ScheduledActivity) -> void:
 
 # When a scheduled event ends, stop the corresponding tracker
 func process_event_ended(event: ScheduledActivity) -> void:
-	trackers[event.activity.tracker_type].pause()
+	trackers[event.activity.tracker_type].end()
 	print("Activity result : " + event.activity.activity_name + " : " + str(trackers[event.activity.tracker_type].result))
 	user_pet.on_event_ended(event)
 	notification_pairs[event.activity.activity_name].queue_free()

@@ -7,6 +7,7 @@
 offset_right = 264.0
 offset_bottom = 100.0
 scale = Vector2(1.011298, 1)
+mouse_filter = 1
 script = ExtResource("1_wwcuh")
 
 [node name="Background" type="ColorRect" parent="."]

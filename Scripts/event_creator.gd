@@ -33,6 +33,7 @@ func _on_button_button_up() -> void:
 	# Ensure things are valid
 	if hours_box.value < 0 or hours_box.value > 24: return
 	if minutes_box.value < 0 or minutes_box.value > 60: return
+	if activity_list.selected == null: return
 	
 	var activity : PhysicalActivity = activity_list.selected
 	

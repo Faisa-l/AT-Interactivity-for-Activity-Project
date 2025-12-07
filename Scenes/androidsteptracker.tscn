@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddnicu0j2gg1"]
+
+[ext_resource type="Script" uid="uid://643s27tp3cph" path="res://Scripts/android_step_tracker.gd" id="1_ua0l3"]
+
+[node name="AndroidStepTracker" type="Node"]
+script = ExtResource("1_ua0l3")
+
+[node name="CheckForBinding" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="CheckForBinding" to="." method="_on_check_for_binding_timeout"]

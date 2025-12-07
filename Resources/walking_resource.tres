@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_u5gfx")
 activity_name = "Walking"
-measurement = "Distance"
+measurement = "Steps"
 stat_table = Dictionary[String, float]({
 "Health": 1.0,
 "Speed": 0.5

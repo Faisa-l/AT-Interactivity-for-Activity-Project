@@ -1,6 +1,9 @@
 @abstract
 class_name ActivityTracker extends Node
 
+# Abstract class (like an interface) for the functionality of all tracked physical activities
+
+# Value returned from activity
 var result : float
 
 @abstract
@@ -11,3 +14,6 @@ func pause()
 
 @abstract
 func reset()
+
+@abstract
+func end()
