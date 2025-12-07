@@ -23,14 +23,17 @@ func start():
 	timer.start()
 	
 	if android_step_counter.valid:
+		
 		if !android_step_counter.started_service: 
 			android_step_counter.initialise_service()
 		
-		android_step_counter.start_step_counter()
+		android_step_counter.enable_sensors = true
 
 # Pauses the tracker
 func pause():
 	timer.stop()
+	android_step_counter.enable_sensors = false
+	
 	if android_step_counter.valid:
 		android_step_counter.end_step_counter()
 
@@ -38,6 +41,7 @@ func pause():
 func reset():
 	timer.stop()
 	distance_travelled = 0.0
+	
 	if android_step_counter.valid:
 		android_step_counter.reset_step_counter()
 

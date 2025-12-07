@@ -18,6 +18,12 @@ var tracking = false
 # Binding is bound (can access tracker)
 var bound = false
 
+# Should sensors be on
+var enable_sensors = false;
+
+# Was initialised
+var initialised = false
+
 # Data retrieved from the step counter
 var step_data : Dictionary
 
@@ -42,8 +48,8 @@ func initialise_service():
 	print("TRYING TO START")
 	if !valid: return
 	
-	print("STARTING SERVICES")
 	if !started_service:
+		print("STARTING SERVICES")
 		AndroidServices.InitialiseService()
 		started_service = true
 
@@ -63,16 +69,20 @@ func set_service_binding():
 
 # Initialises the step counter
 func initialise_step_counter():
+	# Initialisation must run as soon as possible, but this time is unknown
+	# Attempt to call InitialiseStepCounter until it returns true (was initted)
+	
+	if initialised: return
 	if !valid || !started_service: return
 	
-	AndroidServices.InitialiseStepCounter()
+	var success = AndroidServices.InitialiseStepCounter()
+	if success:
+		initialised = true
 
 # Starts the step counter and enables its sensors
 func start_step_counter():
 	if !valid || !started_service: return
 	
-	print("STARTING STEP COUNTER")
-	AndroidServices.InitialiseStepCounter()
 	AndroidServices.StartStepCounterSensor()
 
 # Stops the step counter and disables its sensors 
@@ -97,7 +107,14 @@ func get_step_data():
 
 
 func _on_check_for_binding_timeout() -> void:
+	
 	# Make sure step counter is initialised
 	initialise_step_counter()
+	
+	# Make sure sensors are on
+	if enable_sensors:
+		start_step_counter()
+	else:
+		end_step_counter()
 	
 	get_step_data()
