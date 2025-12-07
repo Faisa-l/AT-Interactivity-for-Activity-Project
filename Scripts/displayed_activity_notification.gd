@@ -18,6 +18,9 @@ var name_label : Label = $MarginContainer/VBoxContainer/EventName
 @onready
 var activity_value_label : Label = $MarginContainer/VBoxContainer/HBoxContainer/Tracking/ValueDisplay
 
+@onready
+var measurement_label : Label = $MarginContainer/VBoxContainer/HBoxContainer/Tracking/Title
+
 func initialise(scheduled_activity : ScheduledActivity) -> void:
 	var start : Dictionary = scheduled_activity.starts
 	var ends : int = Time.get_unix_time_from_datetime_dict(start)
@@ -27,3 +30,4 @@ func initialise(scheduled_activity : ScheduledActivity) -> void:
 	time_label.text = Time.get_datetime_string_from_datetime_dict(start, true)
 	ends_label.text = Time.get_datetime_string_from_unix_time(ends, true)
 	name_label.text = scheduled_activity.title
+	measurement_label.text = scheduled_activity.activity.measurement

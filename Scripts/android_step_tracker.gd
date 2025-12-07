@@ -32,13 +32,15 @@ func _ready() -> void:
 
 # Initialise this class
 func initialise() -> void:
-	
-	AndroidServices = Engine.get_singleton("AndroidTelemetryUtils")
-	if !AndroidServices:
-		print("No android plugin")
+	if Engine.has_singleton("AndroidTelemetryUtils"):
+		AndroidServices = Engine.get_singleton("AndroidTelemetryUtils")
+		if !AndroidServices:
+			printerr("Cannot find plugin AndroidTelemetryUtils")
+			return
+	else:
+		print("No android plugin. App is likely not running on Android")
 		return
 	
-	print("VALID PLUGIN")
 	valid = true
 	AndroidServices.Initialise()
 	AndroidServices.RequestPermissions()

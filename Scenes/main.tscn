@@ -34,28 +34,44 @@ color = Color(0.09019608, 0.09019608, 0.09019608, 1)
 
 [node name="EventCreator" parent="." instance=ExtResource("2_bo1nx")]
 layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -201.0
+offset_top = 80.0
+offset_right = 201.0
+offset_bottom = 217.00043
+grow_horizontal = 2
+
+[node name="ListTitleLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -127.75
+offset_top = 280.0
+offset_right = 127.75
+offset_bottom = 319.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[center]Activities Schedule[/center]"
+fit_content = true
+vertical_alignment = 1
+
+[node name="ActivityNotifications" type="VBoxContainer" parent="."]
+layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -174.99998
-offset_top = -315.0
-offset_right = 175.0
-offset_bottom = -187.0
+offset_left = -20.0
+offset_top = -940.0
+offset_right = 20.0
+offset_bottom = -900.0
 grow_horizontal = 2
 grow_vertical = 0
-
-[node name="ActivityNotifications" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = 80.0
-offset_right = 20.0
-offset_bottom = 120.00001
-grow_horizontal = 2
 theme_override_constants/separation = 15
 
 [node name="UserPet" parent="." instance=ExtResource("5_kry3j")]
@@ -75,5 +91,16 @@ size_flags_horizontal = 3
 [node name="EndEventButton" type="Button" parent="ScrollContainer/DebugButtons"]
 layout_mode = 2
 text = "End Event"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -225.0
+offset_top = 315.0
+offset_right = 225.0
+offset_bottom = 317.0
+grow_horizontal = 2
 
 [connection signal="button_up" from="ScrollContainer/DebugButtons/EndEventButton" to="." method="_on_end_event_button_button_up"]
