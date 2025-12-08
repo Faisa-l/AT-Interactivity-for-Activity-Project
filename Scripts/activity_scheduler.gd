@@ -18,6 +18,7 @@ func schedule_activity(activity : PhysicalActivity, starts : Dictionary, duratio
 	var bstart : int = Time.get_unix_time_from_datetime_dict(starts)
 	var bend : int = bstart + (duration*60)
 	for event in schedule:
+		if title == event.title: return
 		var astart : int = Time.get_unix_time_from_datetime_dict(event.starts)
 		var aend : int = astart + (event.duration*60)
 		if (astart <= bend and bstart <= aend): 
@@ -36,7 +37,30 @@ func schedule_activity(activity : PhysicalActivity, starts : Dictionary, duratio
 # Timer duration will be when this checks for activities
 func _on_timer_timeout() -> void:
 	
+	# If an event is currently running, emit that it has ran
+	if current_event: event_running.emit(current_event)
+	
+	# Loop through all possible events in the schedule
+	for event in schedule:
+		
+		# Check if an event needs to be started or ended
+		if is_event_active(event):
+			# Check if this event has just started
+			# An event would have started if the current event was null
+			if !current_event: 
+				event_started.emit(event)
+				current_event = event
+			break
+		else:
+			# Check if this event has just ended
+			# An event would have ended if it were previously assigned
+			if event == current_event:
+				event_ended.emit(event)
+				current_event = null
+	
+
 	# Loops through each event in the schedule and checks if it is active or not
+	'''
 	var assigned : bool = false
 	for event in schedule:
 		if !assigned and is_event_active(event):
@@ -44,6 +68,7 @@ func _on_timer_timeout() -> void:
 				current_event = event
 				event_started.emit(current_event)
 			assigned = true
+		
 		# Stop this event if it is the current event
 		else:
 			if current_event and event == current_event:
@@ -53,6 +78,8 @@ func _on_timer_timeout() -> void:
 	# Run the tracker for the current event
 	if current_event:
 		event_running.emit(current_event)
+	'''
+	
 
 # Checks if this event should be running
 func is_event_active(event : ScheduledActivity) -> bool:

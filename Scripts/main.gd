@@ -10,6 +10,9 @@ var activity_scheduler : ActivityScheduler = $ActivityTracking/ActivityScheduler
 var walking_tracker : WalkingTracker = $ActivityTracking/WalkingTracker
 
 @onready
+var cycling_tracker : CyclingTracker = $ActivityTracking/CyclingTracker
+
+@onready
 var notification_list : VBoxContainer = $ActivityNotifications
 
 @onready
@@ -28,6 +31,7 @@ func _ready() -> void:
 	activity_scheduler.event_running.connect(process_event_running)
 	
 	trackers[Enums.ActivityType.WALKING] = walking_tracker
+	trackers[Enums.ActivityType.CYCLING] = cycling_tracker
 
 func on_event_submitted(hours: int, minutes: int, activity : PhysicalActivity, duration : int, title : String) -> void:
 	# Convert to dictionary
@@ -40,7 +44,8 @@ func on_event_submitted(hours: int, minutes: int, activity : PhysicalActivity, d
 		var card : DisplayedActivityNotification = notification_scene.instantiate()
 		notification_list.add_child(card)
 		card.initialise(success)
-		notification_pairs[activity.activity_name] = card
+		card.activity_value_label.text = "0.0"
+		notification_pairs[title] = card
 
 # When a scheduled event starts, start the corresponding tracker
 func process_event_started(event: ScheduledActivity) -> void:
@@ -52,12 +57,12 @@ func process_event_ended(event: ScheduledActivity) -> void:
 	trackers[event.activity.tracker_type].end()
 	print("Activity result : " + event.activity.activity_name + " : " + str(trackers[event.activity.tracker_type].result))
 	user_pet.on_event_ended(event)
-	notification_pairs[event.activity.activity_name].queue_free()
+	notification_pairs[event.title].queue_free()
 
 # When a scheduled event is running, perform its tracker thing
 func process_event_running(event: ScheduledActivity) -> void:
 	event.result = trackers[event.activity.tracker_type].result
-	notification_pairs[event.activity.activity_name].activity_value_label.text = str(event.result)
+	notification_pairs[event.title].activity_value_label.text = str(event.result)
 
 
 #region debug

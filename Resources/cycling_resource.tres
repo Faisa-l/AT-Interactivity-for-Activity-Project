@@ -6,5 +6,10 @@
 script = ExtResource("1_x5iqu")
 activity_name = "Cycling"
 activity_Type = 2
+tracker_type = 2
 measurement = "Distance"
+stat_table = Dictionary[String, float]({
+"Endurance": 0.2,
+"Health": 0.1
+})
 metadata/_custom_type_script = "uid://dxbuf0hyuehtf"

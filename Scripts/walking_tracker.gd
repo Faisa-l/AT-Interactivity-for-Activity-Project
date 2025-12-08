@@ -15,8 +15,8 @@ var timer : Timer = $Timer
 var android_step_counter : AndriodStepTracker = $AndroidStepTracker
 
 var distance_travelled : float
-var running : bool:
-	get: return !timer.is_stopped()
+# var running : bool:
+#	get: return !timer.is_stopped()
 
 # Starts the tracker
 func start():

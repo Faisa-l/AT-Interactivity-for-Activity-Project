@@ -109,6 +109,7 @@ func get_step_data():
 
 
 func _on_check_for_binding_timeout() -> void:
+	if !valid: return
 	
 	# Make sure step counter is initialised
 	initialise_step_counter()

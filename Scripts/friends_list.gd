@@ -26,7 +26,6 @@ func add_friend(friend : String):
 	current_friends += 1
 
 
-
 func _on_button_button_up() -> void:
 	if name_input.text.length() == 0: return
 	
