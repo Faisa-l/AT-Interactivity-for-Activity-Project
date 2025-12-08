@@ -16,6 +16,9 @@ var cycling_tracker : CyclingTracker = $ActivityTracking/CyclingTracker
 var notification_list : VBoxContainer = $ActivityNotifications
 
 @onready
+var friends_list : FriendsList = $FriendsList
+
+@onready
 var user_pet : UserPet = $UserPet
 
 @onready
@@ -29,6 +32,7 @@ func _ready() -> void:
 	activity_scheduler.event_started.connect(process_event_started)
 	activity_scheduler.event_ended.connect(process_event_ended)
 	activity_scheduler.event_running.connect(process_event_running)
+	friends_list.add_friend_to_event.connect(add_friend_to_next_event)
 	
 	trackers[Enums.ActivityType.WALKING] = walking_tracker
 	trackers[Enums.ActivityType.CYCLING] = cycling_tracker
@@ -64,6 +68,12 @@ func process_event_running(event: ScheduledActivity) -> void:
 	event.result = trackers[event.activity.tracker_type].result
 	notification_pairs[event.title].activity_value_label.text = str(event.result)
 
+# Add a friend to the next event to run
+func add_friend_to_next_event(friend : String):
+	var event = activity_scheduler.get_next_event()
+	
+	if event:
+		notification_pairs[event.title].add_friend(friend)
 
 #region debug
 

@@ -100,4 +100,20 @@ func clear_current_event(_event : ScheduledActivity) -> void:
 			schedule.remove_at(i)
 			current_event = null
 			return
+
+# Get the next event to run
+func get_next_event() -> ScheduledActivity:
+	if current_event: return current_event
 	
+	# Set event to the smallest diff (event that's closest to running)
+	var event : ScheduledActivity = null
+	var diff : float = INF
+	var now : float = Time.get_unix_time_from_system()
+	for e in schedule:
+		var at : float = Time.get_unix_time_from_datetime_dict(e.starts)
+		var temp = at - now
+		if temp < diff:
+			event = e
+			diff = temp
+	
+	return event

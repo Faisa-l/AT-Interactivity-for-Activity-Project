@@ -11,3 +11,9 @@ var name_label : Label = $Name
 
 @onready
 var button : Button = $Button
+
+signal receive_friend_addition(friend : String)
+
+# When button is pressed, emit a signal to add a friend
+func _on_button_button_up() -> void:
+	receive_friend_addition.emit(name_label.text)

@@ -19,7 +19,7 @@ layout_mode = 2
 [node name="NameInput" type="LineEdit" parent="Debug"]
 layout_mode = 2
 placeholder_text = "Name"
-max_length = 16
+max_length = 14
 context_menu_enabled = false
 caret_blink = true
 

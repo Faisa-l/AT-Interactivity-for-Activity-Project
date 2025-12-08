@@ -16,13 +16,17 @@ var list_container : VBoxContainer = $List
 @export
 var max_friends : int = 5
 
+signal add_friend_to_event(friend : String)
 var current_friends : int = 0
 
 func add_friend(friend : String):
 	
 	var box : FriendBox = friend_box.instantiate()
 	list_container.add_child(box)
+	
 	box.name_label.text = friend
+	box.receive_friend_addition.connect(receive_friend)
+	
 	current_friends += 1
 
 
@@ -35,3 +39,7 @@ func _on_button_button_up() -> void:
 		return
 		
 	add_friend(name_input.text)
+
+# Signal that a friend needs to be added
+func receive_friend(friend : String):
+		add_friend_to_event.emit(friend)

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://va6uod8g48or" path="res://Scripts/displayed_activity_notification.gd" id="1_pdm4c"]
 
 [node name="DisplayedActivityNotification" type="PanelContainer"]
+custom_minimum_size = Vector2(400, 0)
 offset_right = 251.0
 offset_bottom = 156.0
 script = ExtResource("1_pdm4c")
@@ -53,3 +54,8 @@ text = "Distance"
 [node name="ValueDisplay" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Tracking"]
 layout_mode = 2
 text = "Distance"
+
+[node name="ParticipatingFriends" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+autowrap_mode = 2
