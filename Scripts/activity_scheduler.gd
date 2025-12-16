@@ -1,11 +1,16 @@
-# Handles time schedules for things to happen
-# Currently looking to just track for the current day - month and years are ignored, as well as seconds
-
 class_name ActivityScheduler extends Node
 
+## Handles the scheduling and running of events and activities to perform.
+
+## Fired when the ScheduledActivity has started to run.
 signal event_started(event: ScheduledActivity)
+
+## Fired when the ScheduledActivity has ended.
 signal event_ended(event: ScheduledActivity)
+
+## Fired when a ScheduledActivity is running, at intervals based on an internal timer.
 signal event_running(event: ScheduledActivity)
+
 var schedule : Array[ScheduledActivity]
 var current_event : ScheduledActivity
 

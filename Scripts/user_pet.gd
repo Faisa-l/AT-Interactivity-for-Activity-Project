@@ -1,7 +1,7 @@
 class_name UserPet extends Node
 
-# The pet acts as a representation of the physical activity performed by the user
-# Its stats will change based on the result of an activity
+## The pet acts as a representation of the physical activity performed by the user.
+## Its stats will change based on the result of an activity.
 
 @onready
 var debug_stats_label : Label = $DebugContainer/StatsLabel

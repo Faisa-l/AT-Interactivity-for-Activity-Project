@@ -1,5 +1,8 @@
 class_name EventCreator extends PanelContainer
 
+## Allows the creation and submission of events via its signals.
+
+## Fired when this EventCreator has submitted and event.
 signal event_submitted(hours: int, minutes: int, activity : PhysicalActivity, duration : int, title : String)
 
 @onready

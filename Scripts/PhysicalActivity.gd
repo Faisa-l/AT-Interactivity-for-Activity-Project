@@ -1,5 +1,5 @@
-# Resource asset for each individual physical activity
 class_name PhysicalActivity extends Resource
+## Resource asset for each individual physical activity
 
 # The name of the activity
 @export

@@ -1,7 +1,7 @@
 @abstract
 class_name ActivityTracker extends Node
 
-# Abstract class (like an interface) for the functionality of all tracked physical activities
+## Abstract class of the functionality of all tracked physical activities.
 
 # Value returned from activity
 var result : float

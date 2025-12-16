@@ -1,5 +1,5 @@
-# Class which represents an activity
 class_name ScheduledActivity
+## Class which represents an activity
 
 # What the activity actually is
 var activity : PhysicalActivity
