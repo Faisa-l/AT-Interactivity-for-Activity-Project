@@ -41,6 +41,8 @@ func schedule_activity(activity : PhysicalActivity, starts : Dictionary, duratio
 
 # Timer duration will be when this checks for activities
 func _on_timer_timeout() -> void:
+	# I can definitely do get_next_event is_event_active and simply this 
+	# Yet here I am afraid of that causing a bug... and I don't feel lik fixing that
 	
 	# If an event is currently running, emit that it has ran
 	if current_event: event_running.emit(current_event)
@@ -62,29 +64,6 @@ func _on_timer_timeout() -> void:
 			if event == current_event:
 				event_ended.emit(event)
 				current_event = null
-	
-
-	# Loops through each event in the schedule and checks if it is active or not
-	'''
-	var assigned : bool = false
-	for event in schedule:
-		if !assigned and is_event_active(event):
-			if !current_event:
-				current_event = event
-				event_started.emit(current_event)
-			assigned = true
-		
-		# Stop this event if it is the current event
-		else:
-			if current_event and event == current_event:
-				event_ended.emit(current_event)
-				current_event = null
-	
-	# Run the tracker for the current event
-	if current_event:
-		event_running.emit(current_event)
-	'''
-	
 
 # Checks if this event should be running
 func is_event_active(event : ScheduledActivity) -> bool:
