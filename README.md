@@ -18,6 +18,9 @@ For the desktop app:
 - Windows only (10/11).
 - There might be a Linux version.
 
+# Installation
+Go to the [releases](https://github.com/Faisa-l/AT-Interactivity-for-Activity-Project/releases) section and download the correct apk/zip file for your system. The APK will install the app for your mobile device, whereas the zip files will include an executable to run the project.
+
 # Extra notes
 
 For the app to fully run on mobile devices, you will need to accept activity tracking and push notification systems. 
