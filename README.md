@@ -15,7 +15,7 @@ For the mobile app:
 - **Android 14 or higher** is required to run the app.
 
 For the desktop app:
-- Windows only (10/11).
+- Windows (10/11).
 - There might be a Linux version.
 
 # Downloads
