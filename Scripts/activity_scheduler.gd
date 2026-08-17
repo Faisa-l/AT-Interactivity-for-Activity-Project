@@ -70,6 +70,8 @@ func is_event_active(event : ScheduledActivity) -> bool:
 	var now : float = Time.get_unix_time_from_system()
 	var start : int = Time.get_unix_time_from_datetime_dict(event.starts)
 	var end : int = start + (event.duration*60)
+	if (event.starts["dst"] == true): now += 3600
+	
 	if (start <= now and now <= end):
 		print("event " + event.activity.activity_name + " is active")
 		return true
